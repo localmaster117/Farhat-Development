@@ -25,13 +25,13 @@ export default function HomePage() {
         </video>
         <div className="hero__overlay" />
         <div className="hero__content page-shell">
-          <h1>A Beirut residential developer working across a focused urban portfolio.</h1>
+          <h1>Residential projects in Beirut.</h1>
         </div>
       </section>
 
       <section className="home-section-heading">
         <div className="page-shell">
-          <p className="section-label">Selected Developments</p>
+          <h2>Selected Developments</h2>
         </div>
       </section>
 

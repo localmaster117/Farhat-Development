@@ -7,7 +7,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import {
   getAllProjects,
   getProjectById,
-  getProjectCardMeta,
   getRelatedProjects,
   getProjectWebsiteHref
 } from "@/data/projects";
@@ -50,34 +49,49 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <SiteHeader />
 
       <div className="project-hero">
-        <Link href="/developments" className="back-link">
-          All developments
-        </Link>
-        <div className="project-meta-row">
-          <div>
-            <span>Name</span>
-            <strong>{project.name}</strong>
-          </div>
-          <div>
-            <span>Location</span>
-            <strong>{project.location}</strong>
-          </div>
-          <div>
-            <span>Status</span>
-            <strong>{project.status}</strong>
-          </div>
-          <div>
-            <span>Year</span>
-            <strong>{project.year ?? "—"}</strong>
-          </div>
+        <div className="project-breadcrumbs">
+          <Link href="/developments" className="back-link">
+            Developments
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span>{project.name}</span>
         </div>
         <div className="project-hero__top">
           <div>
             <h1>{project.name}</h1>
-            <p className="project-headline">{getProjectCardMeta(project)}</p>
+            <div className="project-meta-row">
+              <div>
+                <span>Location</span>
+                <strong>{project.location}</strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>{project.status}</strong>
+              </div>
+              <div>
+                <span>Year</span>
+                <strong>{project.year ?? "—"}</strong>
+              </div>
+            </div>
+            <p className="project-description">{project.description}</p>
+            <div className="project-summary-actions">
+              {getProjectWebsiteHref(project) ? (
+                <Link
+                  href={getProjectWebsiteHref(project)!}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="project-external-link"
+                >
+                  Visit Project Website
+                </Link>
+              ) : (
+                <p className="project-cta-section__note">
+                  Further project information is available on request.
+                </p>
+              )}
+            </div>
           </div>
         </div>
-        <p className="project-description">{project.description}</p>
       </div>
 
       <div className="project-image">
@@ -90,7 +104,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         />
       </div>
 
-      <section className="gallery-grid">
+      <section className="gallery-grid project-gallery">
         {[project.heroImage, ...project.gallery]
           .filter((image, index, images) => images.indexOf(image) === index)
           .map((image, index) => (
@@ -103,24 +117,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             />
           </div>
         ))}
-      </section>
-
-      <section className="project-cta-section">
-        <p className="section-label">Project</p>
-        {getProjectWebsiteHref(project) ? (
-          <Link
-            href={getProjectWebsiteHref(project)!}
-            target="_blank"
-            rel="noreferrer"
-            className="project-external-link"
-          >
-            Visit Project Website
-          </Link>
-        ) : (
-          <p className="project-cta-section__note">
-            Further project information is available on request.
-          </p>
-        )}
       </section>
 
       <ProjectGrid title="Selected Developments" projects={relatedProjects} />

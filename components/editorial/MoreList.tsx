@@ -9,12 +9,8 @@ type MoreListProps = {
 export function MoreList({ items }: MoreListProps) {
   return (
     <section className="more-list">
-      {items.map((item, index) => (
-        <article
-          key={item.id}
-          id={item.id}
-          className={`more-item${index % 2 === 1 ? " more-item--reverse" : ""}`}
-        >
+      {items.map((item) => (
+        <article key={item.id} id={item.id} className="more-item">
           <div className="more-item__image">
             <Image
               src={item.image}

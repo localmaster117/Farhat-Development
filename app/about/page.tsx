@@ -17,12 +17,13 @@ export default function AboutPage() {
             />
           </div>
           <div className="about-page__intro">
+            <p className="section-label">ABOUT</p>
             <h1>Farhat Development works across a focused residential portfolio in Beirut.</h1>
+            <p className="about-page__support body-copy">
+              The portfolio spans completed buildings in Raouche, active sites,
+              and planned developments elsewhere in the city.
+            </p>
             <div className="about-page__intro-copy">
-              <p className="body-copy">
-                The portfolio spans completed buildings in Raouche, active
-                sites, and planned developments elsewhere in the city.
-              </p>
               <p className="body-copy">
                 The work is presented with an emphasis on street presence,
                 exterior character, and a more disciplined architectural point
@@ -41,15 +42,23 @@ export default function AboutPage() {
               public presentation.
             </p>
           </div>
-          <div className="about-page__block">
+          <div className="about-page__block about-page__block--contact">
             <h2>Get in touch.</h2>
-            <p className="body-copy">
-              For project information and general inquiries:
-            </p>
             <a href="mailto:info@farhatdevelopment.com">
               info@farhatdevelopment.com
             </a>
             <a href="tel:+9611700000">+961 1 700 000</a>
+            <p className="body-copy">
+              For project information and general inquiries, please reach out
+              by email. Due to the volume of correspondence, not every message
+              may receive an immediate response.
+            </p>
+            <p className="body-copy">
+              Farhat Development is open to relevant collaborations,
+              architectural conversations, and project-related opportunities in
+              Beirut. To share a proposal or introduction, please contact
+              info@farhatdevelopment.com.
+            </p>
           </div>
         </div>
 
