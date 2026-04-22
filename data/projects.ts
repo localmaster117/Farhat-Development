@@ -128,6 +128,10 @@ export function getFeaturedProjects() {
   return projects.filter((project) => project.featured);
 }
 
+export function getHomepageProjects(limit = 3) {
+  return getFeaturedProjects().slice(0, limit);
+}
+
 export function getProjectById(id: string) {
   return projects.find((project) => project.id === id);
 }
@@ -145,7 +149,7 @@ export function getProjectCardMeta(project: Project) {
 }
 
 export function getProjectCtaLabel(project: Project) {
-  return project.websiteUrl ? "View Project" : "View Project";
+  return "View Project";
 }
 
 export function getRelatedProjects(id: string, limit = 2) {

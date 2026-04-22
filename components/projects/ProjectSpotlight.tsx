@@ -67,12 +67,6 @@ export function ProjectSpotlight({
 
         {variant === "home" ? (
           <div className="home-projects__copy">
-            <div className="home-projects__positioning">
-              <p>
-                A Beirut residential developer working across a compact urban
-                portfolio.
-              </p>
-            </div>
             {projects.map((project) => (
               <div
                 key={project.id}

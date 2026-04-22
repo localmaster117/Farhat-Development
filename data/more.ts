@@ -81,6 +81,10 @@ export function getFeaturedMoreItems(limit?: number) {
   return typeof limit === "number" ? featuredItems.slice(0, limit) : featuredItems;
 }
 
+export function getHomepageMoreItems(limit = 4) {
+  return getFeaturedMoreItems(limit);
+}
+
 export function getMoreItemById(id: string) {
   return moreItems.find((item) => item.id === id);
 }

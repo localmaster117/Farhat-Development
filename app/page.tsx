@@ -1,12 +1,12 @@
 import { MoreCard } from "@/components/editorial/MoreCard";
 import { ProjectSpotlight } from "@/components/projects/ProjectSpotlight";
 import { SiteHeader } from "@/components/SiteHeader";
-import { getFeaturedMoreItems } from "@/data/more";
-import { getFeaturedProjects, homepageVideo } from "@/data/projects";
+import { getHomepageMoreItems } from "@/data/more";
+import { getHomepageProjects, homepageVideo } from "@/data/projects";
 
 export default function HomePage() {
-  const spotlightProjects = getFeaturedProjects();
-  const featuredMoreItems = getFeaturedMoreItems(4);
+  const spotlightProjects = getHomepageProjects(3);
+  const featuredMoreItems = getHomepageMoreItems(4);
 
   return (
     <main className="home-shell">
@@ -25,10 +25,13 @@ export default function HomePage() {
         </video>
         <div className="hero__overlay" />
         <div className="hero__content page-shell">
-          <h1>
-            <span className="hero__title-strong">Farhat</span>{" "}
-            <span className="hero__title-light">Development</span>
-          </h1>
+          <h1>A Beirut residential developer working across a focused urban portfolio.</h1>
+        </div>
+      </section>
+
+      <section className="home-section-heading">
+        <div className="page-shell">
+          <p className="section-label">Selected Developments</p>
         </div>
       </section>
 
