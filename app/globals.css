@@ -456,7 +456,7 @@ body:has(.developments-shell) {
   display: grid;
   grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.58fr);
   gap: 38px;
-  align-items: start;
+  align-items: center;
 }
 
 .about-page__image {
@@ -467,8 +467,10 @@ body:has(.developments-shell) {
 .about-page__intro {
   display: grid;
   gap: 26px;
-  align-content: start;
-  padding-top: 4px;
+  align-content: center;
+  align-self: center;
+  padding-top: 0;
+  padding-bottom: 8px;
 }
 
 .about-page__intro h1 {
@@ -476,12 +478,15 @@ body:has(.developments-shell) {
   max-width: 10ch;
   line-height: 1.14;
   font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-page__intro-copy {
   display: grid;
   gap: 26px;
   max-width: 30rem;
+  justify-items: start;
 }
 
 .body-copy {
@@ -503,6 +508,7 @@ body:has(.developments-shell) {
   display: grid;
   gap: 7px;
   align-content: start;
+  max-width: 31rem;
 }
 
 .about-page__block .section-label {
@@ -567,8 +573,8 @@ body:has(.developments-shell) {
 }
 
 .more-page__intro {
-  padding-top: 88px;
-  padding-bottom: 54px;
+  padding-top: 64px;
+  padding-bottom: 28px;
 }
 
 .more-page__intro h1 {
@@ -580,20 +586,28 @@ body:has(.developments-shell) {
 
 .more-list {
   display: grid;
-  gap: 96px;
+  gap: 54px;
 }
 
 .more-item {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(340px, 0.9fr);
-  gap: 56px;
+  gap: 42px;
   align-items: center;
+}
+
+.more-item--reverse .more-item__image {
+  order: 2;
+}
+
+.more-item--reverse .more-item__content {
+  order: 1;
 }
 
 .more-item__content {
   display: grid;
-  gap: 16px;
-  max-width: 31rem;
+  gap: 12px;
+  max-width: 28rem;
   align-content: center;
 }
 
@@ -603,24 +617,28 @@ body:has(.developments-shell) {
 }
 
 .more-item__content h2 {
-  font-size: clamp(1.85rem, 2.8vw, 2.95rem);
+  font-size: clamp(1.7rem, 2.35vw, 2.45rem);
   font-weight: 600;
   letter-spacing: -0.055em;
   line-height: 1.03;
-  max-width: 10.5ch;
+  max-width: 11ch;
 }
 
-.more-item__content p:not(.section-label) {
+.more-item__excerpt {
   margin: 0;
-  max-width: 31rem;
-  font-size: 0.95rem;
-  line-height: 1.58;
+  max-width: 28rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .more-item__content a {
   width: fit-content;
   color: #6f7f93;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
   line-height: 1.2;
   text-transform: lowercase;
@@ -629,9 +647,9 @@ body:has(.developments-shell) {
 
 .more-item__image {
   position: relative;
-  aspect-ratio: 1.28 / 1;
+  aspect-ratio: 1.34 / 1;
   min-height: 0;
-  max-width: 720px;
+  max-width: 620px;
   width: 100%;
   border: 0;
   background: #efefeb;
@@ -647,6 +665,33 @@ body:has(.developments-shell) {
 .project-hero h1 {
   font-size: clamp(3rem, 6vw, 5.2rem);
   max-width: 10ch;
+}
+
+.project-meta-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-meta-row div {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  display: grid;
+  gap: 6px;
+}
+
+.project-meta-row span {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-meta-row strong {
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
 .back-link {
@@ -676,8 +721,8 @@ body:has(.developments-shell) {
 
 .project-description {
   margin: 0;
-  max-width: 38rem;
-  font-size: 1.02rem;
+  max-width: 40rem;
+  font-size: 1rem;
 }
 
 .project-external-link {
@@ -695,6 +740,84 @@ body:has(.developments-shell) {
   border: 1px solid var(--line);
 }
 
+.project-grid-section {
+  padding: 36px 0 68px;
+}
+
+.project-grid-section__header {
+  padding-bottom: 18px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-card {
+  display: grid;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.project-card:hover .project-card__media img {
+  transform: scale(1.02);
+}
+
+.project-card__media {
+  position: relative;
+  aspect-ratio: 1.22 / 1;
+  overflow: hidden;
+  background: var(--surface);
+  margin-bottom: 14px;
+}
+
+.project-card__media img {
+  filter: grayscale(1);
+  transition: transform 320ms ease;
+}
+
+.project-card__body {
+  display: grid;
+  gap: 7px;
+}
+
+.project-card__body .section-label,
+.editorial-detail .project-description + .project-description {
+  margin-top: 8px;
+}
+
+.project-card__body h3 {
+  margin: 0;
+  font-size: 1.34rem;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.project-card__meta,
+.project-card__description {
+  margin: 0;
+  color: var(--muted);
+}
+
+.project-card__meta {
+  font-size: 0.92rem;
+}
+
+.project-card__description {
+  max-width: 34rem;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.project-card__cta {
+  width: fit-content;
+  color: var(--muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .project-video {
   width: 100%;
   height: 100%;
@@ -702,6 +825,26 @@ body:has(.developments-shell) {
 
 .project-content--single {
   padding-top: 28px;
+}
+
+.project-cta-section {
+  padding: 28px 0 44px;
+  display: grid;
+  gap: 10px;
+}
+
+.project-cta-section .section-label {
+  margin: 0;
+}
+
+.project-cta-section__note {
+  margin: 0;
+  color: var(--muted);
+}
+
+.editorial-detail {
+  display: grid;
+  gap: 18px;
 }
 
 .project-metrics {
@@ -814,6 +957,11 @@ body:has(.developments-shell) .scroll-top-button {
     grid-template-columns: 1fr;
   }
 
+  .more-item--reverse .more-item__image,
+  .more-item--reverse .more-item__content {
+    order: initial;
+  }
+
   .updates-strip__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -828,6 +976,10 @@ body:has(.developments-shell) .scroll-top-button {
 
   .more-item__image {
     max-width: 560px;
+  }
+
+  .project-meta-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -878,6 +1030,8 @@ body:has(.developments-shell) .scroll-top-button {
   }
 
   .updates-strip__grid,
+  .project-grid,
+  .project-meta-row,
   .project-metrics,
   .gallery-grid {
     grid-template-columns: 1fr;

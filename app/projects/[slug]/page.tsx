@@ -2,22 +2,29 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { SiteHeader } from "@/components/SiteHeader";
-import { getProjectBySlug, projects } from "@/data/projects";
+import {
+  getAllProjects,
+  getProjectById,
+  getProjectCardMeta,
+  getRelatedProjects,
+  getProjectWebsiteHref
+} from "@/data/projects";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return getAllProjects().map((project) => ({ slug: project.id }));
 }
 
 export async function generateMetadata({
   params
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectById(slug);
 
   if (!project) {
     return {};
@@ -31,7 +38,8 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectById(slug);
+  const relatedProjects = getRelatedProjects(slug, 2);
 
   if (!project) {
     notFound();
@@ -45,74 +53,47 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <Link href="/developments" className="back-link">
           All developments
         </Link>
-        <div className="project-hero__top">
+        <div className="project-meta-row">
           <div>
-            <h1>{project.name}</h1>
-            <p className="project-headline">{project.location}</p>
+            <span>Name</span>
+            <strong>{project.name}</strong>
           </div>
-          <div className="project-facts">
-            <p>{project.status}</p>
-            <p>{project.year}</p>
-            <p>{project.unitCount}</p>
+          <div>
+            <span>Location</span>
+            <strong>{project.location}</strong>
           </div>
-        </div>
-        <p className="project-description">{project.description}</p>
-        {project.externalUrl ? (
-          <a
-            href={project.externalUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="project-external-link"
-          >
-            {project.externalLabel ?? "View dedicated project site"}
-          </a>
-        ) : null}
-      </div>
-
-      {project.heroVideo ? (
-        <div className="project-image">
-          <video
-            className="project-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={project.heroImage}
-          >
-            <source src={project.heroVideo} type="video/mp4" />
-          </video>
-        </div>
-      ) : (
-        <div className="project-image">
-          <Image
-            src={project.heroImage}
-            alt={project.name}
-            fill
-            priority
-            sizes="100vw"
-          />
-        </div>
-      )}
-
-      <section className="project-content project-content--single">
-        <div className="project-metrics">
           <div>
             <span>Status</span>
             <strong>{project.status}</strong>
           </div>
           <div>
             <span>Year</span>
-            <strong>{project.year}</strong>
-          </div>
-          <div>
-            <span>Units</span>
-            <strong>{project.unitCount}</strong>
+            <strong>{project.year ?? "—"}</strong>
           </div>
         </div>
-      </section>
+        <div className="project-hero__top">
+          <div>
+            <h1>{project.name}</h1>
+            <p className="project-headline">{getProjectCardMeta(project)}</p>
+          </div>
+        </div>
+        <p className="project-description">{project.description}</p>
+      </div>
+
+      <div className="project-image">
+        <Image
+          src={project.heroImage}
+          alt={project.name}
+          fill
+          priority
+          sizes="100vw"
+        />
+      </div>
 
       <section className="gallery-grid">
-        {project.gallery.map((image, index) => (
+        {[project.heroImage, ...project.gallery]
+          .filter((image, index, images) => images.indexOf(image) === index)
+          .map((image, index) => (
           <div key={image} className="gallery-grid__item">
             <Image
               src={image}
@@ -123,6 +104,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         ))}
       </section>
+
+      <section className="project-cta-section">
+        <p className="section-label">Project</p>
+        {getProjectWebsiteHref(project) ? (
+          <Link
+            href={getProjectWebsiteHref(project)!}
+            target="_blank"
+            rel="noreferrer"
+            className="project-external-link"
+          >
+            Visit Project Website
+          </Link>
+        ) : (
+          <p className="project-cta-section__note">
+            Further project information is available on request.
+          </p>
+        )}
+      </section>
+
+      <ProjectGrid title="Selected Developments" projects={relatedProjects} />
     </main>
   );
 }

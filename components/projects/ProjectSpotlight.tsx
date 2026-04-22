@@ -3,20 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { Project } from "@/data/projects";
+import {
+  getProjectCardMeta,
+  getProjectHref
+} from "@/data/projects";
+import type { Project } from "@/types/project";
 
-type HomeProjectsShowcaseProps = {
+type ProjectSpotlightProps = {
   projects: Project[];
   variant?: "home" | "developments";
 };
 
-export function HomeProjectsShowcase({
+export function ProjectSpotlight({
   projects,
   variant = "home"
-}: HomeProjectsShowcaseProps) {
-  const [activeSlug, setActiveSlug] = useState(projects[0]?.slug);
+}: ProjectSpotlightProps) {
+  const [activeId, setActiveId] = useState(projects[0]?.id);
   const activeProject =
-    projects.find((project) => project.slug === activeSlug) ?? projects[0];
+    projects.find((project) => project.id === activeId) ?? projects[0];
 
   return (
     <section
@@ -27,14 +31,14 @@ export function HomeProjectsShowcase({
       <div className="home-projects__background">
         {projects.map((project) => (
           <Image
-            key={project.slug}
+            key={project.id}
             src={project.heroImage}
             alt={project.name}
             fill
-            priority={project.slug === activeProject.slug}
+            priority={project.id === activeProject.id}
             sizes="100vw"
             className={`home-projects__bg-image${
-              project.slug === activeProject.slug ? " is-active" : ""
+              project.id === activeProject.id ? " is-active" : ""
             }`}
           />
         ))}
@@ -44,23 +48,18 @@ export function HomeProjectsShowcase({
       <div className="page-shell home-projects__inner">
         <div className="home-projects__list">
           {projects.map((project) => {
-            const isActive = project.slug === activeProject.slug;
+            const isActive = project.id === activeProject.id;
 
             return (
               <Link
-                key={project.slug}
-                href={project.externalUrl ?? `/projects/${project.slug}`}
-                target={project.externalUrl ? "_blank" : undefined}
-                rel={project.externalUrl ? "noreferrer" : undefined}
+                key={project.id}
+                href={getProjectHref(project)}
                 className={`home-project-item${isActive ? " is-active" : ""}`}
-                onMouseEnter={() => setActiveSlug(project.slug)}
-                onFocus={() => setActiveSlug(project.slug)}
+                onMouseEnter={() => setActiveId(project.id)}
+                onFocus={() => setActiveId(project.id)}
               >
-                <h3>{project.shortName}</h3>
-                <p>
-                  {project.summary ??
-                    `${project.location}${project.year ? ` / ${project.year}` : ""}`}
-                </p>
+                <h3>{project.name}</h3>
+                <p>{getProjectCardMeta(project)}</p>
               </Link>
             );
           })}
@@ -76,9 +75,9 @@ export function HomeProjectsShowcase({
             </div>
             {projects.map((project) => (
               <div
-                key={project.slug}
+                key={project.id}
                 className={`home-projects__copy-item${
-                  project.slug === activeProject.slug ? " is-active" : ""
+                  project.id === activeProject.id ? " is-active" : ""
                 }`}
               >
                 <p className="home-projects__copy-meta">{project.status}</p>
@@ -91,18 +90,9 @@ export function HomeProjectsShowcase({
 
       <div className="page-shell home-projects__mobile">
         {projects.map((project) => (
-          <Link
-            key={project.slug}
-            href={project.externalUrl ?? `/projects/${project.slug}`}
-            target={project.externalUrl ? "_blank" : undefined}
-            rel={project.externalUrl ? "noreferrer" : undefined}
-            className="home-projects__mobile-item"
-          >
-            <h3>{project.shortName}</h3>
-            <p>
-              {project.summary ??
-                `${project.status} / ${project.location}${project.year ? ` / ${project.year}` : ""}`}
-            </p>
+          <Link key={project.id} href={getProjectHref(project)} className="home-projects__mobile-item">
+            <h3>{project.name}</h3>
+            <p>{getProjectCardMeta(project)}</p>
           </Link>
         ))}
       </div>

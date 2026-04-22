@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { HomeProjectsShowcase } from "@/components/HomeProjectsShowcase";
+import { MoreCard } from "@/components/editorial/MoreCard";
+import { ProjectSpotlight } from "@/components/projects/ProjectSpotlight";
 import { SiteHeader } from "@/components/SiteHeader";
-import { UpdatesStrip } from "@/components/UpdatesStrip";
-import { getHomeSpotlightProjects, homepageVideo } from "@/data/projects";
-import { updates } from "@/data/updates";
+import { getFeaturedMoreItems } from "@/data/more";
+import { getFeaturedProjects, homepageVideo } from "@/data/projects";
 
 export default function HomePage() {
-  const spotlightProjects = getHomeSpotlightProjects();
+  const spotlightProjects = getFeaturedProjects();
+  const featuredMoreItems = getFeaturedMoreItems(4);
 
   return (
     <main className="home-shell">
@@ -19,7 +19,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1800&q=80"
+          poster="/images/projects/shared/homepage-video-poster.svg"
         >
           <source src={homepageVideo} type="video/mp4" />
         </video>
@@ -32,9 +32,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <HomeProjectsShowcase projects={spotlightProjects} />
+      <ProjectSpotlight projects={spotlightProjects} />
 
-      <UpdatesStrip items={updates.slice(0, 4)} />
+      <section className="updates-strip">
+        <div className="page-shell">
+          <div className="updates-strip__heading">
+            <p className="section-label">More</p>
+          </div>
+          <div className="updates-strip__grid">
+            {featuredMoreItems.map((item) => (
+              <MoreCard key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
