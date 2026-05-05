@@ -1,7 +1,7 @@
 import type { Project } from "@/types/project";
 
 export const homepageVideo =
-  "https://videos.pexels.com/video-files/4770380/4770380-hd_1920_1080_25fps.mp4";
+  "/videos/homepage-hero.mp4";
 export const aboutImage = "/images/projects/shared/about-image.svg";
 
 export const projects: Project[] = [
@@ -41,10 +41,12 @@ export const projects: Project[] = [
     year: "—",
     description:
       "A later Raouche address with deeper balconies, a calmer facade rhythm, and a more contemporary residential envelope.",
-    heroImage: "/images/projects/farhat-ii/hero.svg",
+    heroImage: "/images/projects/farhat-ii/hero.jpg",
     gallery: [
-      "/images/projects/farhat-ii/gallery-1.svg",
-      "/images/projects/farhat-ii/gallery-2.svg"
+      "/images/projects/farhat-ii/gallery-1.jpg",
+      "/images/projects/farhat-ii/gallery-2.jpg",
+      "/images/projects/farhat-ii/gallery-3.jpg",
+      "/images/projects/farhat-ii/gallery-4.jpg"
     ],
     websiteUrl: undefined,
     featured: false,
