@@ -20,11 +20,17 @@ export const projects: Project[] = [
     description:
       "A completed Raouche building with a measured frontage, durable exterior language, and a quieter residential presence.",
     // Primary project image
-    heroImage: "/images/projects/farhat-i/hero.svg",
+    heroImage: "/images/projects/farhat-i/cover.jpg",
     // Supporting images shown in the gallery grid
     gallery: [
-      "/images/projects/farhat-i/gallery-1.svg",
-      "/images/projects/farhat-i/gallery-2.svg"
+      "/images/projects/farhat-i/gallery-1.jpg",
+      "/images/projects/farhat-i/gallery-2.jpg",
+      "/images/projects/farhat-i/gallery-3.jpg",
+      "/images/projects/farhat-i/gallery-4.jpg",
+      "/images/projects/farhat-i/gallery-5.jpg",
+      "/images/projects/farhat-i/gallery-6.jpg",
+      "/images/projects/farhat-i/gallery-7.jpg",
+      "/images/projects/farhat-i/gallery-8.jpg"
     ],
     // External project website if one exists
     websiteUrl: undefined,
@@ -41,12 +47,25 @@ export const projects: Project[] = [
     year: "—",
     description:
       "A later Raouche address with deeper balconies, a calmer facade rhythm, and a more contemporary residential envelope.",
-    heroImage: "/images/projects/farhat-ii/hero.jpg",
+    heroImage: "/images/projects/farhat-ii/cover.jpg",
     gallery: [
       "/images/projects/farhat-ii/gallery-1.jpg",
       "/images/projects/farhat-ii/gallery-2.jpg",
       "/images/projects/farhat-ii/gallery-3.jpg",
-      "/images/projects/farhat-ii/gallery-4.jpg"
+      "/images/projects/farhat-ii/gallery-4.jpg",
+      "/images/projects/farhat-ii/gallery-5.jpg",
+      "/images/projects/farhat-ii/gallery-6.jpg",
+      "/images/projects/farhat-ii/gallery-7.jpg",
+      "/images/projects/farhat-ii/gallery-8.jpg",
+      "/images/projects/farhat-ii/gallery-9.jpg",
+      "/images/projects/farhat-ii/gallery-10.jpg",
+      "/images/projects/farhat-ii/gallery-11.jpg",
+      "/images/projects/farhat-ii/gallery-12.jpg",
+      "/images/projects/farhat-ii/gallery-13.jpg",
+      "/images/projects/farhat-ii/gallery-14.jpg",
+      "/images/projects/farhat-ii/gallery-15.jpg",
+      "/images/projects/farhat-ii/gallery-16.jpg",
+      "/images/projects/farhat-ii/gallery-17.jpg"
     ],
     websiteUrl: undefined,
     featured: false,
@@ -60,10 +79,17 @@ export const projects: Project[] = [
     year: "—",
     description:
       "An active tower project in Koreytem with a stronger vertical street presence and a more focused public identity.",
-    heroImage: "/images/projects/palms-tower/hero.svg",
+    heroImage: "/images/projects/palms-tower/cover.jpg",
     gallery: [
-      "/images/projects/palms-tower/gallery-1.svg",
-      "/images/projects/palms-tower/gallery-2.svg"
+      "/images/projects/palms-tower/gallery-1.jpg",
+      "/images/projects/palms-tower/gallery-2.jpg",
+      "/images/projects/palms-tower/gallery-3.jpg",
+      "/images/projects/palms-tower/gallery-4.jpg",
+      "/images/projects/palms-tower/gallery-5.jpg",
+      "/images/projects/palms-tower/gallery-6.jpg",
+      "/images/projects/palms-tower/gallery-7.jpg",
+      "/images/projects/palms-tower/gallery-8.jpg",
+      "/images/projects/palms-tower/gallery-9.jpg"
     ],
     websiteUrl: "https://palmstower.com/",
     featured: true,
@@ -77,10 +103,14 @@ export const projects: Project[] = [
     year: "—",
     description:
       "A compact residential building calibrated to a dense Beirut frontage and a more compressed urban grain.",
-    heroImage: "/images/projects/hamra/hero.svg",
+    heroImage: "/images/projects/hamra/cover.jpg",
     gallery: [
-      "/images/projects/hamra/gallery-1.svg",
-      "/images/projects/hamra/gallery-2.svg"
+      "/images/projects/hamra/gallery-1.jpg",
+      "/images/projects/hamra/gallery-2.jpg",
+      "/images/projects/hamra/gallery-3.jpg",
+      "/images/projects/hamra/gallery-4.jpg",
+      "/images/projects/hamra/gallery-5.jpg",
+      "/images/projects/hamra/gallery-6.jpg"
     ],
     websiteUrl: undefined,
     featured: true,
@@ -119,6 +149,35 @@ export const projects: Project[] = [
     websiteUrl: undefined,
     featured: false,
     order: 6
+  },
+  {
+    id: "ashrafieh-2270",
+    name: "Ashrafieh 2270",
+    location: "Ashrafieh, Beirut",
+    status: "Completed" as const,
+    year: "—",
+    description:
+      "A completed Ashrafieh address with a sharper urban profile, quieter detailing, and a more vertical residential expression.",
+    heroImage: "/images/projects/ashrafieh/cover.jpg",
+    gallery: [
+      "/images/projects/ashrafieh/gallery-1.jpg",
+      "/images/projects/ashrafieh/gallery-2.jpg",
+      "/images/projects/ashrafieh/gallery-3.jpg",
+      "/images/projects/ashrafieh/gallery-4.jpg",
+      "/images/projects/ashrafieh/gallery-5.jpg",
+      "/images/projects/ashrafieh/gallery-6.jpg",
+      "/images/projects/ashrafieh/gallery-7.jpg",
+      "/images/projects/ashrafieh/gallery-8.jpg",
+      "/images/projects/ashrafieh/gallery-9.jpg",
+      "/images/projects/ashrafieh/gallery-10.jpg",
+      "/images/projects/ashrafieh/gallery-11.jpg",
+      "/images/projects/ashrafieh/gallery-12.jpg",
+      "/images/projects/ashrafieh/gallery-13.jpg",
+      "/images/projects/ashrafieh/gallery-14.jpg"
+    ],
+    websiteUrl: undefined,
+    featured: false,
+    order: 7
   }
 ].sort((a, b) => a.order - b.order);
 
